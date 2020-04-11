@@ -18,9 +18,6 @@ var choices = Array.from(document.getElementsByClassName("choice-text"));
 var timerEl = document.getElementsByClassName("countdown");
 
 
-var buttonEl = document.getElementsByClassName("choice-container");
-
-
 
 var currentQuestion = {};
 var score = 0;
