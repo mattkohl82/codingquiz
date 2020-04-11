@@ -45,18 +45,31 @@ function startGame() {
   getNewQuestion();
 };
 
+function getNewQuestion () {
+    
+    questionCounter++;
+    var questionIndex = Math.floor(Math.random() * availableQuesions.length)
+        currentQuestion = availableQuesions[questionIndex];
+        question.innerText = currentQuestion
+}
 
 
 
 
 
-var counter = 90;
+
+var counter = 60;
 
 setInterval( function() {
     counter--;
 
-    if( counter >= 0 ){
+    if ( counter <= 0){
+        id = document.getElementById("count")
+        id.innerText = "Game Over";
+    } else {
         id = document.getElementById("count");
         id.innerHTML = counter;
     }
 }, 1000);
+
+startGame();
