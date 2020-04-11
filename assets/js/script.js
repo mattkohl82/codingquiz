@@ -1,9 +1,28 @@
+var counter = 60;
+
+setInterval( function() {
+    counter--;
+
+    if ( counter <= 0){
+        id = document.getElementById("count")
+        id.innerText = "Quiz Over!";
+    } else {
+        id = document.getElementById("count");
+        id.innerHTML = counter;
+    }
+}, 1000);
+
+
 var question = document.getElementById("question");
 var choices = Array.from(document.getElementsByClassName("choice-text"));
 var timerEl = document.getElementsByClassName("countdown");
 
+
+var buttonEl = document.getElementsByClassName("choice-container");
+
+
+
 var currentQuestion = {};
-var acceptingAnswers = false;
 var score = 0;
 var questionCounter = 0;
 var availableQuesions = [];
@@ -45,31 +64,19 @@ function startGame() {
   getNewQuestion();
 };
 
-function getNewQuestion () {
-    
-    questionCounter++;
-    var questionIndex = Math.floor(Math.random() * availableQuesions.length)
-        currentQuestion = availableQuesions[questionIndex];
-        question.innerText = currentQuestion
+function getNewQuestion() {
+ 
+  questionCounter++;
+  const questionIndex = Math.floor(Math.random() * availableQuesions.length);
+  currentQuestion = availableQuesions[questionIndex];
+  question.innerText = currentQuestion.question;
+
+  choices.forEach(choice => {
+    const number = choice.dataset["number"];
+    choice.innerText = currentQuestion["choice" + number];
+  });
+
+  availableQuesions.splice(questionIndex, 1);
 }
-
-
-
-
-
-
-var counter = 60;
-
-setInterval( function() {
-    counter--;
-
-    if ( counter <= 0){
-        id = document.getElementById("count")
-        id.innerText = "Game Over";
-    } else {
-        id = document.getElementById("count");
-        id.innerHTML = counter;
-    }
-}, 1000);
-
-startGame();
+  
+  startGame();
